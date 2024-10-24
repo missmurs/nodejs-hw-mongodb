@@ -3,7 +3,7 @@ import { Router } from 'express';
 import {
   getAllContactsController,
   getContactsByIdController,
-  createStudentController,
+  createContactController,
   deleteContactController,
   upsertContactController,
   patchContactController,
@@ -13,7 +13,7 @@ const router = Router();
 
 router.get('/contacts', ctrlWrapper(getAllContactsController));
 router.get('/contacts/:contactId', ctrlWrapper(getContactsByIdController));
-router.post('/contacts', ctrlWrapper(createStudentController));
+router.post('/contacts', ctrlWrapper(createContactController));
 router.delete('/contacts/:contactId', ctrlWrapper(deleteContactController));
 router.put('/contacts/:contactId', ctrlWrapper(upsertContactController));
 router.patch('/contacts/:contactId', ctrlWrapper(patchContactController));
