@@ -30,7 +30,7 @@ router.delete(
 );
 
 router.post(
-  '/',
+  '/contacts',
   validateBody(createContactSchema),
   ctrlWrapper(createContactController),
 );
