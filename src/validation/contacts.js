@@ -18,7 +18,7 @@ export const createContactSchema = Joi.object({
     .messages({
       'any.required': 'Contact Type is required',
     }),
-  parentId: Joi.string().required(),
+  userId: Joi.string().required(),
 });
 export const updateContactSchema = Joi.object({
   name: Joi.string().min(3).max(20),
