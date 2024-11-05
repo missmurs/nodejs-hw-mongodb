@@ -8,6 +8,7 @@ import {
 import { parsePaginationParams } from '../utils/parsePaginationParams.js';
 import createHttpError from 'http-errors';
 import { parseSortParams } from '../utils/parseSortParams.js';
+
 export const getContactsByIdController = async (req, res, next) => {
   try {
     const { contactId } = req.params;
@@ -15,6 +16,9 @@ export const getContactsByIdController = async (req, res, next) => {
 
     if (!contact) {
       throw createHttpError(404, 'Contact not found');
+    }
+    if (contact.userId.toString() !== req.user._id.toString()) {
+      throw createHttpError(403, 'Contact is forbidden');
     }
 
     res.json({
@@ -29,11 +33,19 @@ export const getContactsByIdController = async (req, res, next) => {
 
 export const createContactController = async (req, res, next) => {
   try {
-    const contact = await createContact(req.body);
+    const contact = {
+      name: req.body.name,
+      phoneNumber: req.body.phoneNumber,
+      email: req.body.email,
+      contactType: req.body.contactType,
+      userId: req.user._id,
+    };
+
+    const result = await createContact(contact);
     res.status(201).json({
       status: 201,
       message: 'Successfully created a contact!',
-      data: contact,
+      data: result,
     });
   } catch (err) {
     next(err);
@@ -108,6 +120,7 @@ export const getAllContactsController = async (req, res) => {
     perPage,
     sortBy,
     sortOrder,
+    userId: req.user._id,
   });
 
   res.json({

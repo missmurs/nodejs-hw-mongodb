@@ -36,7 +36,10 @@ export const logoutUserController = async (req, res) => {
   if (req.cookies.sessionId) {
     await logoutUser(req.cookies.sessionId);
   }
-
+  res.json({
+    status: 200,
+    message: 'Successfully logout!',
+  });
   res.clearCookie('sessionId');
   res.clearCookie('refreshToken');
 
