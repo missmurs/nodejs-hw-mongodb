@@ -1,5 +1,6 @@
 //.gitignore
-
+src/temp/*
+!src/temp/.gitkeep
 /node_modules
 
 .env
