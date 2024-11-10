@@ -15,7 +15,7 @@ import {
   patchContactController,
 } from '../controllers/contacts.js';
 import { ctrlWrapper } from '../utils/ctrlWrapper.js';
-
+import { upload } from '../middlewares/multer.js';
 const router = Router();
 router.use(authenticate);
 
@@ -25,23 +25,27 @@ router.delete('/:contactId', isValidId, ctrlWrapper(deleteContactController));
 
 router.post(
   '/register',
+
   validateBody(createContactSchema),
   ctrlWrapper(createContactController),
 );
 router.post(
   '/',
+  upload.single('photo'),
   validateBody(createContactSchema),
   ctrlWrapper(createContactController),
 );
 router.put(
   '/:contactId',
   isValidId,
+  upload.single('photo'),
   validateBody(createContactSchema),
   ctrlWrapper(upsertContactController),
 );
 
 router.patch(
   '/:contactId',
+  upload.single('photo'),
   isValidId,
   validateBody(updateContactSchema),
   ctrlWrapper(patchContactController),
