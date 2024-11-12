@@ -15,7 +15,7 @@ import { TEMPLATES_DIR } from '../constants/index.js';
 import {
   getFullNameFromGoogleTokenPayload,
   validateCode,
-} from '../utils/googleOAuth2.js';
+} from '../../utils/googleOAuth2.js';
 
 export const registerUser = async (payload) => {
   const user = await UsersCollection.findOne({ email: payload.email });
