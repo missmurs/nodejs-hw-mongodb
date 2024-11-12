@@ -1,0 +1,81 @@
+tags:
+  - Contacts
+summary: Update contact by ID
+operationId: updateContact
+description: 'Update a contact partially by its unique ID.'
+security:
+  - bearerAuth: []
+parameters:
+  - in: path
+    name: id
+    required: true
+    schema:
+      type: string
+      example: '65ca67e7ae7f10c88b598384'
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          name:
+            description: 'Contact`s name'
+            type: string
+            example: 'John Doe'
+          phoneNumber:
+            description: 'Contact`s phone number'
+            type: string
+            example: '+380000000007'
+          email:
+            description: 'Contact`s email'
+            type: string
+            example: 'john.doe@example.com'
+          contactType:
+            description: 'Type of contact (e.g., work, home, personal)'
+            type: string
+            enum: ['work', 'home', 'personal']
+            example: 'work'
+          isFavourite:
+            description: 'Whether the contact is marked as a favourite'
+            type: boolean
+            example: true
+responses:
+  '200':
+    description: 'Successfully updated the contact'
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: Successfully updated contact with ID 65ca67e7ae7f10c88b598384!
+            data:
+              type: object
+              $ref: '../../../components/schemas/contact.yaml'
+  '400':
+    description: 'Bad Request - Invalid input data'
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+          properties:
+            status:
+              type: integer
+              example: 400
+            message:
+              type: string
+              example: Invalid input data.
+  '401':
+    $ref: '../../../components/responses/401.yaml'
