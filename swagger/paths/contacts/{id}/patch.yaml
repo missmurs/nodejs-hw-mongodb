@@ -2,7 +2,7 @@ tags:
   - Contacts
 summary: Update contact by ID
 operationId: updateContact
-description: 'Update a contact partially by its unique ID.'
+description: 'Update a contact partially by its unique ID, including the possibility to upload a photo as a file.'
 security:
   - bearerAuth: []
 parameters:
@@ -15,7 +15,7 @@ parameters:
 requestBody:
   required: true
   content:
-    application/json:
+    multipart/form-data:
       schema:
         type: object
         properties:
@@ -40,6 +40,10 @@ requestBody:
             description: 'Whether the contact is marked as a favourite'
             type: boolean
             example: true
+          photo:
+            description: 'The contact photo file'
+            type: string
+            format: binary
 responses:
   '200':
     description: 'Successfully updated the contact'
