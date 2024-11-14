@@ -207,11 +207,7 @@
                     "type": "string",
                     "enum": ["work", "home", "personal"]
                   },
-                  "userId": {
-                    "description": "Contact`s parent id",
-                    "type": "string",
-                    "example": "65e4decdd286b30065d54af9"
-                  },
+
                   "photo": {
                     "description": "Contact's photo",
                     "type": "string",
@@ -399,11 +395,11 @@
           }
         ],
         "requestBody": {
-          "required": true,
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
                 "type": "object",
+
                 "properties": {
                   "name": {
                     "description": "Contact`s name",
@@ -411,25 +407,26 @@
                     "example": "John Doe"
                   },
                   "phoneNumber": {
-                    "description": "Contact`s phone number",
+                    "description": "Contact`s phoneNumber",
                     "type": "string",
                     "example": "+380000000007"
                   },
                   "email": {
                     "description": "Contact`s email",
                     "type": "string",
-                    "example": "john.doe@example.com"
+                    "example": "andriy7@example.com"
                   },
                   "contactType": {
-                    "description": "Type of contact (e.g., work, home, personal)",
+                    "description": "Contact`s contactType",
                     "type": "string",
-                    "enum": ["work", "home", "personal"],
-                    "example": "work"
+                    "enum": ["work", "home", "personal"]
                   },
-                  "isFavourite": {
-                    "description": "Whether the contact is marked as a favourite",
-                    "type": "boolean",
-                    "example": true
+
+                  "photo": {
+                    "description": "Contact's photo",
+                    "type": "string",
+                    "format": "binary",
+                    "example": null
                   }
                 }
               }
@@ -535,11 +532,6 @@
             "description": "Contact`s contactType",
             "type": "string",
             "enum": ["work", "home", "personal"]
-          },
-          "userId": {
-            "description": "Contact`s parent id",
-            "type": "string",
-            "example": "65e4decdd286b30065d54af9"
           },
           "photo": {
             "description": "Link to contact`s photo",
