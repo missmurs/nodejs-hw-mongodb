@@ -181,7 +181,6 @@
                   "_id",
                   "name",
                   "phoneNumber",
-                  "isFavourite",
                   "contactType",
                   "createdAt",
                   "updatedAt"
@@ -207,7 +206,12 @@
                     "type": "string",
                     "enum": ["work", "home", "personal"]
                   },
-
+                  "isFavourite": {
+                    "description": "Contact is favourite",
+                    "type": "boolean",
+                    "default": false,
+                    "example": true
+                  },
                   "photo": {
                     "description": "Contact's photo",
                     "type": "string",
@@ -421,7 +425,12 @@
                     "type": "string",
                     "enum": ["work", "home", "personal"]
                   },
-
+                  "isFavourite": {
+                    "description": "Contact is favourite",
+                    "type": "boolean",
+                    "default": false,
+                    "example": true
+                  },
                   "photo": {
                     "description": "Contact's photo",
                     "type": "string",
@@ -497,46 +506,49 @@
     "schemas": {
       "contact": {
         "type": "object",
-        "required": [
-          "_id",
-          "name",
-          "phoneNumber",
-          "email",
-          "isFavourite",
-          "contactType",
-          "createdAt",
-          "updatedAt"
-        ],
+        "required": ["_id", "name", "phoneNumber", "contactType", "userId"],
         "properties": {
           "_id": {
-            "description": "Contact`s id",
+            "description": "Contact's id",
             "type": "string",
-            "example": "65e4decdd286b30065d54af9"
+            "example": "671f66a2c1889554f6956e54"
           },
           "name": {
-            "description": "Contact`s name",
+            "description": "Contact's name",
             "type": "string",
-            "example": "John Doe"
+            "example": "Jhon doe"
+          },
+          "email": {
+            "description": "Contact's email",
+            "type": "string",
+            "example": "example@gmail.com"
           },
           "phoneNumber": {
-            "description": "Contact`s phoneNumber",
+            "description": "Contact's phone number",
             "type": "string",
             "example": "+380000000007"
           },
-          "email": {
-            "description": "Contact`s email",
-            "type": "string",
-            "example": "andriy7@example.com"
+          "isFavourite": {
+            "description": "Contact is favourite",
+            "type": "boolean",
+            "default": false,
+            "example": true
           },
           "contactType": {
-            "description": "Contact`s contactType",
+            "description": "Contact's type",
             "type": "string",
-            "enum": ["work", "home", "personal"]
+            "enum": ["work", "home", "personal"],
+            "default": "personal"
+          },
+          "userId": {
+            "description": "Contact's user id",
+            "type": "string",
+            "example": "671f66a2c1889664f6956e54"
           },
           "photo": {
-            "description": "Link to contact`s photo",
+            "description": "Contact's avatar",
             "type": "string",
-            "example": "https://res.cloudinary.com/uqwgdu/image/upload/image.png"
+            "format": "binary"
           }
         }
       }
