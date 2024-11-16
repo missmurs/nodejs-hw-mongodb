@@ -73,22 +73,6 @@
               "enum": ["asc", "desc"],
               "example": "asc"
             }
-          },
-          {
-            "in": "query",
-            "name": "minAvgMark",
-            "schema": {
-              "type": "number",
-              "example": 4
-            }
-          },
-          {
-            "in": "query",
-            "name": "maxAvgMark",
-            "schema": {
-              "type": "number",
-              "example": 10
-            }
           }
         ],
         "responses": {
@@ -123,7 +107,7 @@
                         "data": {
                           "type": "array",
                           "items": {
-                            "$ref": "#/components/schemas/contact"
+                            "$ref": "../swagger/components/schemas/contact.yaml"
                           }
                         },
                         "page": {
@@ -177,14 +161,7 @@
             "multipart/form-data": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "_id",
-                  "name",
-                  "phoneNumber",
-                  "contactType",
-                  "createdAt",
-                  "updatedAt"
-                ],
+                "required": ["name", "phoneNumber", "contactType"],
                 "properties": {
                   "name": {
                     "description": "Contact`s name",
@@ -242,7 +219,7 @@
                     },
                     "data": {
                       "type": "object",
-                      "$ref": "#/components/schemas/contact"
+                      "$ref": "../swagger/components/schemas/contact.yaml"
                     }
                   }
                 }
@@ -296,7 +273,7 @@
                     },
                     "data": {
                       "type": "object",
-                      "$ref": "#/components/schemas/contact"
+                      "$ref": "../swagger/components/schemas/contact.yaml"
                     }
                   }
                 }
